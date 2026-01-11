@@ -41,7 +41,7 @@ function loadFiveDaysSectionData(data) {
     hourlySectionContainer.innerHTML += 
       `<div class="hourly-cards">
           <h3>${time}</h3>
-          <img src="http://openweathermap.org/img/wn/${icon}@2x.png" alt="">
+          <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="">
           <p>${tempFixed}°C</p>
        </div>`;
   }
@@ -64,7 +64,7 @@ let loadFiveDays = (data)=> {
     fiveDaysCards.innerHTML += `
       <div class="five-days-cards">
         <h3>${day}</h3>
-        <img src="http://openweathermap.org/img/wn/${info.icon}@2x.png" alt="">
+        <img src="https://openweathermap.org/img/wn/${info.icon}@2x.png" alt="">
         <p class="low"><b>${info.temp_min.toFixed(1)}°C</b></p>
         <p class="high"><b>${info.temp_max.toFixed(1)}°C</b></p>
       </div>
@@ -130,7 +130,7 @@ async function getFiveDaysWeatherInfoWithSearch(optionData) {
 
 async function getCitiesForSearch(searchText){
     if (searchText.trim().length < 2) return [];
-    let response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchText}&limit=5&appid=${apiKey}`);
+    let response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${searchText}&limit=5&appid=${apiKey}`);
     let data = await response.json();
     return data;
 
