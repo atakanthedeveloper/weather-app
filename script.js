@@ -75,29 +75,28 @@ let loadFiveDays = (data)=> {
 }
 
 function calculateDayWiseForecast(data) {
+  let foreCastDays = new Map();
 
-    let foreCastDays = new Map();
+  for (let foreCast of data) {
+    let dayOfTheForeCast = daysOfTheWeek[new Date(foreCast.dt * 1000).getDay()];
 
-    for(let foreCast of data) {
-        let dateOfForecast = foreCast.dt_txt;
-        let dayOfTheForeCast = daysOfTheWeek[new Date(dateOfForecast).getDay()];
-        if(foreCastDays.has(dayOfTheForeCast)) {
-            let valueOfTheDay = foreCastDays.get(dayOfTheForeCast);
-            valueOfTheDay.push(foreCast);
-            foreCastDays.set(dayOfTheForeCast, valueOfTheDay);
-        }
-        else {
-            foreCastDays.set(dayOfTheForeCast, [foreCast]);
-        }
+    if (foreCastDays.has(dayOfTheForeCast)) {
+      let valueOfTheDay = foreCastDays.get(dayOfTheForeCast);
+      valueOfTheDay.push(foreCast);
+      foreCastDays.set(dayOfTheForeCast, valueOfTheDay);
+    } else {
+      foreCastDays.set(dayOfTheForeCast, [foreCast]);
     }
+  }
 
-    for(let [key, value] of foreCastDays) {
-        let temp_min = Math.min(...value.map(v => v.main.temp_min));
-        let temp_max = Math.max(...value.map(v => v.main.temp_max));
-        let icon = value.find(v => v.weather && v.weather[0])?.weather[0].icon;
-        foreCastDays.set(key, {temp_min, temp_max, icon, day: key});
-    }
-    return foreCastDays;
+  for (let [key, value] of foreCastDays) {
+    let temp_min = Math.min(...value.map(v => v.main.temp_min));
+    let temp_max = Math.max(...value.map(v => v.main.temp_max));
+    let icon = value.find(v => v.weather && v.weather[0])?.weather[0].icon;
+    foreCastDays.set(key, { temp_min, temp_max, icon, day: key });
+  }
+
+  return foreCastDays;
 }
 
 async function getCitySectionWeatherInfoWithSearch(selectedCityInfo) {
