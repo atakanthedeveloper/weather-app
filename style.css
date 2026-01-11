@@ -1,0 +1,238 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+:root {
+    --spacing-medium: 8px;
+    --spacing-regular: 16px;
+    --spacing-large: 32px;
+    --spacing-xx-large: 80px;
+    --standart-border-radius: 15px;
+    --font-size-small: 0.5rem;
+    --font-size-regular: 1rem;
+    --font-size-regular-large: 1.5rem;
+    --font-size-large: 2rem;
+    --font-size-xlarge: 3rem;
+    --font-size-xxlarge: 4rem;
+    --font-weight-semi-bold: 600;
+    --font-weight-bold: 800;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.main-container {
+    width: 400px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "search"
+    "city"
+    "hourly"
+    "fiveday"
+    "feelsAndHumidity";
+    padding: var(--spacing-regular);
+    gap: var(--spacing-regular);
+}
+
+.sections {
+    border: 3px solid black;
+    padding: var(--spacing-regular);
+    border-radius: var(--standart-border-radius);
+}
+
+#search-bar {
+    grid-area: search;
+    text-align: center;
+}
+
+#search-bar > input {
+    font-size: var(--font-size-regular-large);
+    padding: var(--spacing-medium);
+    border-radius: var(--standart-border-radius);
+    width: 100%;
+}
+
+#city-info-section {
+    grid-area: city;
+    text-align: center;
+}
+
+#city-info-section .temp {
+    font-size: var(--font-size-xxlarge);
+}
+
+#city-info-section .description {
+    font-size: var(--font-size-regular);
+    font-weight: var(--font-weight-semi-bold);
+    text-transform: capitalize;
+}
+
+#city-info-section .min-max-temp {
+    font-size: var(--font-size-regular);
+    font-weight: var(--font-weight-semi-bold);
+}
+
+#hourly-forecast-section {
+    grid-area: hourly;
+    display: flex;
+    gap: var(--spacing-large);
+    overflow-x: auto;
+    text-align: center;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.35) rgba(0,0,0,0.15);
+}
+
+#hourly-forecast-section::-webkit-scrollbar{
+  height: 10px;
+}
+
+#hourly-forecast-section::-webkit-scrollbar-track{
+  background: rgba(87, 87, 87, 0.15);
+  border-radius: 999px;
+}
+
+#hourly-forecast-section::-webkit-scrollbar-thumb{
+  background: rgba(0,0,0,0.35);
+  border-radius: 999px;
+}
+
+#hourly-forecast-section::-webkit-scrollbar-thumb:hover{
+  background: rgba(0,0,0,0.5);
+}
+
+#hourly-forecast-section .hourly-cards img {
+    width: 90px;
+}
+
+#hourly-forecast-section .hourly-cards p {
+    font-weight: var(--font-weight-semi-bold);
+}
+
+#five-day-fourcast-section {
+    grid-area: fiveday;
+}
+
+#five-day-fourcast-section h2 {
+    text-align: center;
+    padding: var(--spacing-medium);
+}
+
+#five-day-fourcast-section #five-day-fourcast-card-container .five-days-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+    align-items: center;
+}
+
+#five-day-fourcast-section #five-day-fourcast-card-container .five-days-cards img {
+    width: 90px;
+}
+
+#five-day-fourcast-section #five-day-fourcast-card-container .five-days-cards .low {
+    color:rgba(59, 59, 59, 0.89);
+}
+
+#feel-and-humidity-section {
+    grid-area: feelsAndHumidity;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+#feel-and-humidity-section p {
+    margin-top: var(--spacing-regular);
+    font-size: var(--font-size-regular-large);
+}
+
+@media screen and (width >= 650px) {
+    .main-container {
+        width: 500px;
+        grid-template-areas: 
+        "search"
+        "city"
+        "hourly"
+        "fiveday"
+        "feelsAndHumidity";
+    }
+
+    #hourly-forecast-section {
+        justify-content: flex-start;
+        align-items: center;
+        gap: var(--spacing-xx-large);
+    }
+
+    #feel-and-humidity-section {
+        grid-area: feelsAndHumidity;
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+    }
+}
+
+@media screen and (width >= 850px) {
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+    .main-container {
+        width: 700px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: 
+        "search search"
+        "city city"
+        "hourly fiveday"
+        "feelsAndHumidity fiveday"
+        "feelsAndHumidity fiveday";
+    }
+
+    #hourly-forecast-section {
+        gap: var(--spacing-medium);
+    }
+
+    #feel-and-humidity-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (width >= 1050px) {
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+    .main-container {
+        width: 800px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: 
+        "search search"
+        "city city"
+        "hourly fiveday"
+        "feelsAndHumidity fiveday"
+        "feelsAndHumidity fiveday";
+    }
+
+    #hourly-forecast-section {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: var(--spacing-large);
+    }
+
+    #feel-and-humidity-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

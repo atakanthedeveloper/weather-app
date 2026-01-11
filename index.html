@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Weather App</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="main-container" class="main-container">
+            <div id="search-bar">
+                <input list="city-list" type="search" name="search" id="search-bar-input" placeholder="Search City..." autocomplete="off">
+                <datalist id="city-list">
+                </datalist>
+            </div>
+            <div id="city-info-section" class="sections">
+                <h1>City Name</h1>
+                <p class="temp">Temp</p>
+                <p class="description">Description</p>
+                <p class="min-max-temp">High and Low</p>
+            </div>
+            <div id="hourly-forecast-section" class="sections">
+                
+            </div>
+            <div id="five-day-fourcast-section" class="sections">
+                <h2>5 Days Forecast</h2>
+                <div id="five-day-fourcast-card-container">
+                </div>
+            </div>
+            <div id="feel-and-humidity-section" class="sections">
+                <div id="feel-section" class="feel-cards">
+                    <h2>Feels Like</h2>
+                    <p id="feel-temp"></p>
+                </div>
+                <div id="humidity-section" class="humidity-cards">
+                    <h2>Humidity</h2>
+                    <p id="humidity-percentage-value"></p>
+                </div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
